@@ -9,6 +9,13 @@ What sets AutoBench apart is its focus on confidence scores, essential for **aut
 *   **Intelligently route** low-confidence predictions for human-in-the-loop verification, streamlining exception handling.
 *   **Optimize IDP pipelines** by leveraging confidence to prioritize document routing and manual intervention.
 
+<p align="center">
+    <img src="assets/confidence-benchmark.png" width="45%">
+    <img src="assets/detailed-benchmark-results.png" width="45%">
+</p>
+
+**Figure: Benchmark Results** – A comparison of confidence benchmarks and detailed performance metrics.  
+For a full analysis, visit [this detailed report](https://nanonets.com/automation-benchmark).  
 
 ## Setup
 
