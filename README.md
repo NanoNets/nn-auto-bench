@@ -121,13 +121,12 @@ The benchmark was conducted using the following model versions. Links to our ben
 | Pixtral         | `Pixtral-12B-2409`              | VLM        | [Pixtral (prob)](results/pixtral_prob.jsonl) |
 | GPT-4V          | `gpt-4o-2024-11-20`             | LLM        | [GPT4V](results/gpt_logits.jsonl)   |
 | GPT-4o          | `gpt-4o-2024-11-20`             | LLM        | [GPT4o (Prob)](results/gpt4o_prob.jsonl)   |
-| GPT-o3-mini     | `o3-mini`                       | LLM        | [o3 Mini ]() |
-| Nanonets        | `nanonets-internal-model`       | Prop.      | [Nanonets](results/nanonets.jsonl)   |
 | DSv3            | `deepseekv3`                    | LLM        | [DeepSeekV3 ()]()     |
 | Gemini Flash 2  | `gemini-2.0-flash`              | LLM        | [Gemini Flash 2.0 (prob)](results/gemini_prob.jsonl)   |
 | Claude 3.5      | `claude-3-5-sonnet-20241022`    | LLM        | [Claude 3.5 (prob)](results/claude_35_prob.jsonl) |
 | Claude 3.7      | `claude-3-7-sonnet-20250219`    | LLM        | [Claude 3.7 (prob)](results/claude_37_prob.jsonl) |
 | Mistral Large   | `mistral-large-latest`          | LLM        | [Mistral Large (prob)]() |
+| **Nanonets**    | `nanonets-internal-model`       | *Prop.*    | [Nanonets](results/nanonets.jsonl)   |
 
 
 ---
