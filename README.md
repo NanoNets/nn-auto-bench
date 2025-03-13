@@ -94,14 +94,13 @@ python tools/benchmark.py <model_name> --input_file <path_to_input_jsonl_file> [
 
 - `--max_workers <int>`: Number of worker threads (default: 16).
 - `--few_shot <int>`: Number of few-shot examples (default: 1).
-- `--layout <string>`: Input text layout (default: `default`).
 - `--conf_score_method <string>`: Method for computing confidence scores (`prob`, `yes_no`, `consistency`, default: `prob`).
 - `--limit <int>`: Number of document samples to benchmark.
 
 ### Example:
 
 ```bash
-python tools/benchmark.py gpt4o --input_file data/your_dataset.jsonl --max_workers 32 --few_shot 1 --conf_score_method prob --limit 10
+python tools/benchmark.py gpt4o --input_file data/metadata.jsonl --max_workers 32 --few_shot 1 --conf_score_method prob --limit 10
 ```
 
 ## Output
