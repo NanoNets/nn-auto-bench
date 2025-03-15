@@ -50,7 +50,28 @@ API keys and base URLs must be set using an `.env` file.
 
     **Important:** Ensure both API keys and base URLs are correctly set for each model before running benchmarks. Refer to `.env.example` for required variable names.
 
-### 3. Run Benchmarks
+### 3. Dataset Download
+
+AutoBench uses a publicly available dataset on Hugging Face Hub. You can download the dataset using the provided `download_dataset.sh` script.
+
+#### Dataset Download Steps:
+
+1. **Make the script executable:** Open your terminal, navigate to the `tools/` directory, and make the `download_dataset.sh` script executable:
+   ```bash
+   chmod +x download_dataset.sh
+   ```
+2. **Run the script:** Execute the script from the `tools/` directory:
+   ```bash
+   ./download_dataset.sh
+   ```
+
+   The script will:
+    * Check if the `data/` directory already exists and ask if you want to remove and re-download the dataset if it does.
+    * Download the `nanonets/nn-auto-bench-ds` dataset from Hugging Face Hub to the `data/` directory in the project root.
+
+   After successful execution, the dataset will be located in the `data/` subdirectory.
+
+### 4. Run Benchmarks
 
 The benchmarking process is executed using `benchmark.py`.
 
@@ -62,6 +83,8 @@ Run the benchmark script with the following command:
 python tools/benchmark.py <model_name> --input_file <path_to_input_jsonl_file> [options]
 ```
 
+**Before running benchmarks, ensure you have downloaded the dataset using the `download_dataset.sh` script as described in the "Dataset Download" section above.**  The `--input_file` argument in the `benchmark.py` command should then point to the appropriate JSONL file within the downloaded dataset directory (e.g., `data/metadata.jsonl`).
+
 ### Arguments:
 
 - `<model_name>`: The model to evaluate (`qwen2`, `gpt4v`, `gpt4o`, etc.).
@@ -71,14 +94,13 @@ python tools/benchmark.py <model_name> --input_file <path_to_input_jsonl_file> [
 
 - `--max_workers <int>`: Number of worker threads (default: 16).
 - `--few_shot <int>`: Number of few-shot examples (default: 1).
-- `--layout <string>`: Input text layout (default: `default`).
 - `--conf_score_method <string>`: Method for computing confidence scores (`prob`, `yes_no`, `consistency`, default: `prob`).
 - `--limit <int>`: Number of document samples to benchmark.
 
 ### Example:
 
 ```bash
-python tools/benchmark.py gpt4o --input_file data/your_dataset.jsonl --max_workers 32 --few_shot 1 --conf_score_method prob --limit 10
+python tools/benchmark.py gpt4o --input_file data/metadata.jsonl --max_workers 32 --few_shot 1 --conf_score_method prob --limit 10
 ```
 
 ## Output
@@ -121,13 +143,12 @@ The benchmark was conducted using the following model versions. Links to our ben
 | Pixtral         | `Pixtral-12B-2409`              | VLM        | [Pixtral (prob)](results/pixtral_prob.jsonl) |
 | GPT-4V          | `gpt-4o-2024-11-20`             | LLM        | [GPT4V](results/gpt_logits.jsonl)   |
 | GPT-4o          | `gpt-4o-2024-11-20`             | LLM        | [GPT4o (Prob)](results/gpt4o_prob.jsonl)   |
-| GPT-o3-mini     | `o3-mini`                       | LLM        | [o3 Mini ]() |
-| Nanonets        | `nanonets-internal-model`       | Prop.      | [Nanonets](results/nanonets.jsonl)   |
 | DSv3            | `deepseekv3`                    | LLM        | [DeepSeekV3 ()]()     |
 | Gemini Flash 2  | `gemini-2.0-flash`              | LLM        | [Gemini Flash 2.0 (prob)](results/gemini_prob.jsonl)   |
 | Claude 3.5      | `claude-3-5-sonnet-20241022`    | LLM        | [Claude 3.5 (prob)](results/claude_35_prob.jsonl) |
 | Claude 3.7      | `claude-3-7-sonnet-20250219`    | LLM        | [Claude 3.7 (prob)](results/claude_37_prob.jsonl) |
 | Mistral Large   | `mistral-large-latest`          | LLM        | [Mistral Large (prob)]() |
+| **Nanonets**    | `nanonets-internal-model`       | *Prop.*    | [Nanonets](results/nanonets.jsonl)   |
 
 
 ---
@@ -137,7 +158,7 @@ The benchmark was conducted using the following model versions. Links to our ben
 - Add more models to the benchmark.
 - Add more confidence scoring methods.
 
-Reachout to us at [Placeholder](mailto:benchmarks@nanonets.com) for any questions or feedback.
+Reachout to us at [benchmarks@nanonets.com](mailto:benchmarks@nanonets.com) for any questions or feedback.
 
 ---
 

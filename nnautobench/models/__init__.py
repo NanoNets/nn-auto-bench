@@ -10,6 +10,7 @@ from .gpt4v_model import GPT4VModel
 from .gpto3mini import GPTo3MiniModel
 from .mistral_large import MistralLarge
 from .qwen2_model import Qwen2Model
+from .gemma3_model import Gemma3_27B
 
 available_models = {
     "qwen2": Qwen2Model,
@@ -22,6 +23,8 @@ available_models = {
     "claude37": Claude37,
     "mistral-large": MistralLarge,
     "gpt-o3-mini": GPTo3MiniModel,
+    "gemma3-27b": Gemma3_27B,
+
 }
 
 
