@@ -158,7 +158,7 @@ The benchmark was conducted using the following model versions. Links to our ben
 - Add more models to the benchmark.
 - Add more confidence scoring methods.
 
-Reachout to us at [benchmarks@nanonets.com](mailto:research@nanonets.com) for any questions or feedback.
+Reachout to us at [research@nanonets.com](mailto:research@nanonets.com) for any questions or feedback.
 
 ---
 
