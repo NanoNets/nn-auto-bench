@@ -50,7 +50,28 @@ API keys and base URLs must be set using an `.env` file.
 
     **Important:** Ensure both API keys and base URLs are correctly set for each model before running benchmarks. Refer to `.env.example` for required variable names.
 
-### 3. Run Benchmarks
+### 3. Dataset Download
+
+AutoBench uses a publicly available dataset on Hugging Face Hub. You can download the dataset using the provided `download_dataset.sh` script.
+
+#### Dataset Download Steps:
+
+1. **Make the script executable:** Open your terminal, navigate to the `tools/` directory, and make the `download_dataset.sh` script executable:
+   ```bash
+   chmod +x download_dataset.sh
+   ```
+2. **Run the script:** Execute the script from the `tools/` directory:
+   ```bash
+   ./download_dataset.sh
+   ```
+
+   The script will:
+    * Check if the `data/` directory already exists and ask if you want to remove and re-download the dataset if it does.
+    * Download the `nanonets/nn-auto-bench-ds` dataset from Hugging Face Hub to the `data/` directory in the project root.
+
+   After successful execution, the dataset will be located in the `data/` subdirectory.
+
+### 4. Run Benchmarks
 
 The benchmarking process is executed using `benchmark.py`.
 
@@ -62,6 +83,8 @@ Run the benchmark script with the following command:
 python tools/benchmark.py <model_name> --input_file <path_to_input_jsonl_file> [options]
 ```
 
+**Before running benchmarks, ensure you have downloaded the dataset using the `download_dataset.sh` script as described in the "Dataset Download" section above.**  The `--input_file` argument in the `benchmark.py` command should then point to the appropriate JSONL file within the downloaded dataset directory (e.g., `data/metadata.jsonl`).
+
 ### Arguments:
 
 - `<model_name>`: The model to evaluate (`qwen2`, `gpt4v`, `gpt4o`, etc.).
@@ -71,14 +94,13 @@ python tools/benchmark.py <model_name> --input_file <path_to_input_jsonl_file> [
 
 - `--max_workers <int>`: Number of worker threads (default: 16).
 - `--few_shot <int>`: Number of few-shot examples (default: 1).
-- `--layout <string>`: Input text layout (default: `default`).
 - `--conf_score_method <string>`: Method for computing confidence scores (`prob`, `yes_no`, `consistency`, default: `prob`).
 - `--limit <int>`: Number of document samples to benchmark.
 
 ### Example:
 
 ```bash
-python tools/benchmark.py gpt4o --input_file data/your_dataset.jsonl --max_workers 32 --few_shot 1 --conf_score_method prob --limit 10
+python tools/benchmark.py gpt4o --input_file data/metadata.jsonl --max_workers 32 --few_shot 1 --conf_score_method prob --limit 10
 ```
 
 ## Output

@@ -72,4 +72,8 @@ MODEL_CONFIGS = {
             "https://api.mistral.ai/v1",
         ),
     },
+    "gemma3-27b": {
+        "model_name": "google/gemma-3-27b-it",
+        "api_base": os.getenv("GEMMA3_27B_API_BASE_URL"),
+    },
 }
